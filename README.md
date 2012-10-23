@@ -84,7 +84,6 @@ namespace Acme\DemoBundle\Command;
 use Funddy\Bundle\FixtureBundle\ConsoleFixtureLoader\ConsoleFixtureLoader;
 use Funddy\Component\Fixture\Fixture\FixtureLoader;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
