@@ -5,7 +5,7 @@
     "homepage": "https://github.com/funddy/fixture-bundle",
     "type": "symfony-bundle",
     "license": "MIT",
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Keyvan Akbary",
