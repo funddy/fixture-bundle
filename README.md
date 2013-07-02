@@ -11,7 +11,7 @@ Add the following to your composer.json file:
 ```json
 {
     "require": {
-        "funddy/fixture-bundle": "1.0.*"
+        "funddy/fixture-bundle": "2.0.*"
     }
 }
 ```
@@ -43,7 +43,7 @@ Create your fixture definition
 namespace Acme\DemoBundle\Fixture;
 
 use Acme\DemoBundle\Service\UserService;
-use Funddy\Component\Fixture\Fixture\Fixture;
+use Funddy\Fixture\Fixture\Fixture;
 
 class UserFixture extends Fixture
 {
@@ -82,7 +82,7 @@ Create a fixtures loader command
 namespace Acme\DemoBundle\Command;
 
 use Funddy\Bundle\FixtureBundle\ConsoleFixtureLoader\ConsoleFixtureLoader;
-use Funddy\Component\Fixture\Fixture\FixtureLoader;
+use Funddy\Fixture\Fixture\FixtureLoader;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

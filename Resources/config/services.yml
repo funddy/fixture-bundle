@@ -1,4 +1,4 @@
 services:
     funddy.component.fixture.fixturelinker:
-        class: Funddy\Component\Fixture\Fixture\FixtureLinker
+        class: Funddy\Fixture\Fixture\FixtureLinker
         public: false

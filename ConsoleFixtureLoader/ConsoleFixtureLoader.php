@@ -2,16 +2,11 @@
 
 namespace Funddy\Bundle\FixtureBundle\ConsoleFixtureLoader;
 
-use Funddy\Component\Fixture\Fixture\Fixture;
-use Funddy\Component\Fixture\Fixture\FixtureLoader;
-use Funddy\Component\Fixture\Observer\Observer;
+use Funddy\Fixture\Fixture\Fixture;
+use Funddy\Fixture\Fixture\FixtureLoader;
 use Symfony\Component\Console\Output\OutputInterface;
 
-/**
- * @copyright (C) Funddy (2012)
- * @author Keyvan Akbary <keyvan@funddy.com>
- */
-class ConsoleFixtureLoader implements Observer
+class ConsoleFixtureLoader
 {
     private $fixtureLoader;
     private $output;
@@ -33,12 +28,8 @@ class ConsoleFixtureLoader implements Observer
         $this->fixtureLoader->loadAll();
     }
 
-    /**
-     * @see Observer
-     */
-    public function update()
+    public function notifyFixtureLoaded($fixtureName)
     {
-        $fixtureName = $this->fixtureLoader->lastLoadedFixtureName();
         $this->output->writeln(sprintf('Loaded <comment>%s</comment>', $fixtureName));
     }
 }

@@ -5,13 +5,9 @@ namespace Funddy\Bundle\FixtureBundle\Tests\ConsoleFixtureLoader;
 use Funddy\Bundle\FixtureBundle\ConsoleFixtureLoader\ConsoleFixtureLoader;
 use Mockery as m;
 
-/**
- * @copyright (C) Funddy (2012)
- * @author Keyvan Akbary <keyvan@funddy.com>
- */
 class ConsoleFixtureLoaderTest extends \PHPUnit_Framework_TestCase
 {
-    const IRRELEVANT_FIXTURE_NAME = 'XX';
+    const IRRELEVANT_FIXTURE_NAME = 'X';
 
     private $fixtureLoaderMock;
     private $outputMock;
@@ -20,10 +16,10 @@ class ConsoleFixtureLoaderTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->fixtureLoaderMock = m::mock('Funddy\Component\Fixture\Fixture\FixtureLoader');
+        $this->fixtureLoaderMock = m::mock('Funddy\Fixture\Fixture\FixtureLoader');
         $this->fixtureLoaderMock->shouldReceive('attach');
         $this->outputMock = m::mock('Symfony\Component\Console\Output\OutputInterface');
-        $this->dummyFixture = m::mock('Funddy\Component\Fixture\Fixture\Fixture');
+        $this->dummyFixture = m::mock('Funddy\Fixture\Fixture\Fixture');
         $this->consoleFixtureLoader = new ConsoleFixtureLoader($this->fixtureLoaderMock, $this->outputMock);
     }
 
@@ -33,7 +29,7 @@ class ConsoleFixtureLoaderTest extends \PHPUnit_Framework_TestCase
     public function addFixture()
     {
         $this->fixtureLoaderAddFixtureShouldBeCalled();
-        $this->assertEmpty($this->consoleFixtureLoader->addFixture($this->dummyFixture));
+        $this->consoleFixtureLoader->addFixture($this->dummyFixture);
     }
 
     private function fixtureLoaderAddFixtureShouldBeCalled()
@@ -44,10 +40,10 @@ class ConsoleFixtureLoaderTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function loadAll()
+    public function loadAllShouldCallFixtureLoader()
     {
         $this->fixtureLoaderLoadAllShouldBeCalled();
-        $this->assertEmpty($this->consoleFixtureLoader->loadAll());
+        $this->consoleFixtureLoader->loadAll();
     }
 
     private function fixtureLoaderLoadAllShouldBeCalled()
@@ -58,22 +54,15 @@ class ConsoleFixtureLoaderTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function update()
+    public function notifyFixtureLoadedShouldWriteOnOutput()
     {
-        $this->fixtureLoaderLastLoadedFixtureNameShouldBeCalled();
-        $this->outputWriteLnShouldBeCalled();
-        $this->assertEmpty($this->consoleFixtureLoader->update());
+        $this->outputWriteLnShouldBeCalledWith('Loaded <comment>XX</comment>');
+        $this->consoleFixtureLoader->notifyFixtureLoaded(self::IRRELEVANT_FIXTURE_NAME);
     }
 
-    private function fixtureLoaderLastLoadedFixtureNameShouldBeCalled()
-    {
-        $this->fixtureLoaderMock
-            ->shouldReceive('lastLoadedFixtureName')->once()->withNoArgs()->andReturn(self::IRRELEVANT_FIXTURE_NAME);
-    }
-
-    private function outputWriteLnShouldBeCalled()
+    private function outputWriteLnShouldBeCalledWith($message)
     {
         $this->outputMock
-            ->shouldReceive('writeln')->once();
+            ->shouldReceive('writeln')->once()->with($message);
     }
 }
