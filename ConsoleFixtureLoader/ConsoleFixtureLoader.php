@@ -28,7 +28,7 @@ class ConsoleFixtureLoader
         $this->fixtureLoader->loadAll();
     }
 
-    public function notifyFixtureLoaded($fixtureName)
+    public function fixtureLoaded($fixtureName)
     {
         $this->output->writeln(sprintf('Loaded <comment>%s</comment>', $fixtureName));
     }

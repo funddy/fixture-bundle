@@ -54,10 +54,10 @@ class ConsoleFixtureLoaderTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function notifyFixtureLoadedShouldWriteOnOutput()
+    public function fixtureLoadedShouldWriteOnOutput()
     {
-        $this->outputWriteLnShouldBeCalledWith('Loaded <comment>XX</comment>');
-        $this->consoleFixtureLoader->notifyFixtureLoaded(self::IRRELEVANT_FIXTURE_NAME);
+        $this->outputWriteLnShouldBeCalledWith('Loaded <comment>X</comment>');
+        $this->consoleFixtureLoader->fixtureLoaded(self::IRRELEVANT_FIXTURE_NAME);
     }
 
     private function outputWriteLnShouldBeCalledWith($message)
